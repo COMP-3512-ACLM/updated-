@@ -1,0 +1,373 @@
+/* READ If theres a comment with "CSS Change" then there has been new stuff added in from the base doc*/
+
+main { /*CSS Change*/
+    display: flex;
+    height: calc(100vh - var(--header-height));
+    background-color: steelblue;
+}
+
+header {
+    background-color: ghostwhite;
+    border: solid 1px black;
+}
+
+header img {
+    max-width: 70px;
+    max-height: 40px;
+}
+
+header nav a {
+    border: solid 1px black;
+}
+
+a:link {
+    color: firebrick;
+    text-decoration: none;
+}
+
+a:visited {
+    color: steelblue;
+}
+
+a:hover {
+    color: gray;
+}
+
+/******************************
+Filter panel styling
+******************************/
+
+#filters {
+    width: var(--filters-width);
+    min-width: var(--filters-width); /* Prevents the filters panel from being "eaten" by the results panel when the viewport size is too small */
+    
+    overflow: hidden; /* For hiding the contents when toggled */
+    padding: 0; /* Otherwise, the panel still shows when width is 0 */
+    
+    background-color: black; /*CSS Change*/
+    color: white;
+}
+
+#filters legend { /* CSS for coloring the filter titles */ /*CSS Change*/
+    background-color: steelblue;
+    width: auto;
+    color: black;
+    text-decoration: underline;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+    padding: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+#filters.hidden {
+    width: 0;
+    min-width: 0;
+}
+
+/* This ensures that the header isn't wrapped when hidden */
+#filters h1 {
+    white-space: nowrap;
+    /width: calc(var(--filters-width) - var(--container-padding) * 2);
+    
+    color: black; /*CSS Change*/
+    font-size: 150%;
+    padding: 0.5em;
+    text-align: center;
+    text-decoration: overline underline;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+    background-color: steelblue;
+}
+
+#filters form, #filters h1 {
+    margin: var(--container-padding); /* This acts as the padding removed earlier */
+}
+
+#filters button { /*CSS Change*/
+    margin: auto;
+    
+    border-radius: 1em;
+    border: none;
+    color: white;
+    padding: 1em 2em;
+    text-align: center;
+    background-color: steelblue;
+}
+
+#filters fieldset {
+    margin-bottom: 1rem;
+}
+
+#filters fieldset div {
+    margin-bottom: .375rem;
+    
+    display: grid;
+    
+    /*  Note: Exact, static units are used here to maintain the panel's contents when toggling.
+        With relative sizes, the panel contents will shift around as the panel is toggled.
+        The sum of these variables should equal the --filters-width variable minus padding. */
+    --radio-size: 2rem;
+    --label-size: 4rem;
+    --input-size: 12rem;
+    --output-size: 2rem;
+    
+    grid-template-columns: var(--radio-size) var(--label-size)
+                            var(--input-size) var(--output-size);
+}
+
+/* The button container */
+#filters form > div {
+    display: grid;
+    grid-gap: 1rem;
+    
+    /* Note that static units are used here again, for the same purpose as above. */
+    grid-template-columns: repeat(2, calc(var(--filters-width) / 2 - 1rem));
+}
+
+#filters input[type=text], #filters input[type=range] {
+    grid-column: 3;
+    
+    width: 100%;
+}
+
+#filters input[type=text] {
+    grid-column-end: 5;
+}
+
+#filters, #results-panel {
+    transition: .5s ease;
+    transition-property: width, min-width;
+}
+
+/******************************
+Search results styling
+******************************/
+
+/* The "sort by" bar */
+
+#sort-headers {/* NEW Div tag added, sets colors for the upper sort bar background */ /*CSS&HTML Change*/ 
+    background-color: black;
+    color: white;
+}
+
+#sortbar {
+    display: grid;
+    grid-template-columns: auto repeat(3, 5em);
+
+    padding: 0.5em; /*CSS Change*/
+}
+
+#sortbar h2 { /*CSS Change*/
+    text-align: right;
+    color: white;
+    text-shadow: -1px 0 steelblue, 0 1px steelblue, 1px 0 steelblue, 0 -1px steelblue;
+}
+
+#sortbar span {
+    margin: auto;
+    user-select: none;
+    
+    opacity: 75%; /* Slightly transparent when not selected */
+    
+    background-color: cadetblue; /*CSS Change*/
+    width: 100%;
+    text-align: center;
+    border: solid 1px black;
+}
+
+#sortbar span:hover {
+    cursor: pointer;
+    
+    opacity: 100%;
+}
+
+/* Only show sort direction when selected */
+#sortbar span::after {
+    opacity: 0;
+}
+#sortbar span.selected, #sortbar span.selected::after {
+    opacity: 100%;
+}
+
+/* Show appropriate arrow for sort direction */
+#sortbar span[data-sortdir="1"]::after {
+    content: " ▴";
+}
+#sortbar span[data-sortdir="-1"]::after {
+    content: " ▾";
+}
+
+/* The toggle button */
+
+#hide {
+    margin-left: -2rem; /* This should match the left padding of the results panel */
+    background: none; /*CSS Change*/
+    border: none;
+    
+    position: absolute;
+    
+    font-size: 2rem;
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    padding: 0;
+    
+    opacity: 75%;
+    
+    color: white; /*CSS Change*/
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+/* Displays the appropriate arrow for the toggle button */
+#hide::after {
+    content: ">";
+}
+
+.open #hide::after {
+    content: "<";
+}
+
+#hide:hover {
+    opacity: 100%;
+}
+
+/* Search results */
+
+#results-panel {
+    padding-left: 2rem;
+    flex-grow: 1;
+    
+    overflow-y: scroll;
+}
+
+#results-panel h1 { /*CSS Change*/
+    font-size: 150%;
+    text-align: center;
+    color: white;
+    text-shadow: -1px 0 steelblue, 0 1px steelblue, 1px 0 steelblue, 0 -1px steelblue;
+}
+
+#results li {
+    display: flex;
+    
+    margin-bottom: 1rem;
+    
+    height: 138px; /* Matches poster */
+    min-width: 512px;
+    /* max-width: 1024px; Comments out so page looks better, uncomment if code is important*/ /*CSS Change*/
+    
+    background-color: ghostwhite;
+    border: solid 5px firebrick;
+}
+
+#results li div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    
+    padding: .5rem 1rem;
+    
+    width: 100%;
+}
+
+#results li p {
+    grid-column: 1 / span 2;
+    
+    width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#results li .button {
+    grid-column: 2;
+}
+
+#results li h2, #results .rating {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+#results .rating {
+    text-align: right;
+}
+
+#results li h2, #results li span {
+    margin: auto 0;
+}
+
+#results .year {
+    opacity: 75%;
+}
+
+/******************************
+
+Mobile
+
+******************************/
+
+@media only screen and (max-width: 600px) {
+    /* TODO: remove; this is temporary */
+    main {
+        flex-direction: column;
+        height: 100%;
+        
+        min-width: 0;
+    }
+    
+    #filters {
+        width: 100%;
+        height: 28.5rem; /* 14 lines + padding = 28.5rem */
+        
+        position: sticky;
+        top: var(--header-height);
+        z-index: 1;
+        
+        transition-property: height;
+    }
+    
+    #filters.hidden {
+        width: 100%;
+        min-width: 100%;
+        
+        height: 0;
+    }
+    
+    #filters fieldset div {
+        --label-size: 6rem;
+        --input-size: 1fr;
+    }
+    
+    /* The button container */
+    #filters form > div {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    #hide {
+        position: sticky;
+        left: 0;
+        top: calc(29.5rem + var(--header-height));
+        z-index: 2;
+        
+        margin-top: calc(var(--container-padding) * -1);
+        
+        transition: .5s all ease;
+    }
+    
+    .open #hide {
+        top: var(--header-height);
+    }
+    
+    #hide::after {
+        content: "-";
+    }
+
+    .open #hide::after {
+        content: "+";
+    }
+    
+    #results-panel {
+        overflow-y: visible;
+    }
+    
+    #results li {
+        min-width: 0;
+    }
+}

@@ -1,0 +1,91 @@
+body {
+    background-image: url('../image/background.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+main { 
+    display: flex;
+    height: calc(100vh - var(--header-height));
+    background-color: steelblue;
+    margin: 1em 30em 30em 30em;
+    border: dashed 5px black;
+}
+
+#signup {
+    background-color: black;
+    color: white;
+    margin: auto;
+    width: 80%;
+    height: 60%;
+    padding-top: 1em;
+    border: ridge 5px powderblue;
+}
+
+#signup h1 {
+    font-size: 150%;
+    text-align: center;
+    text-decoration: overline underline dotted;
+    text-shadow: -1px 0 steelblue, 0 1px steelblue, 1px 0 steelblue, 0 -1px steelblue;
+}
+
+#signup form {
+    width: 50%;
+    padding-top: 1em;
+    text-align: left;
+}
+
+#submit {
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    padding: 0.5em 1em;
+    background-color: firebrick;
+}
+
+header {
+    background-color: ghostwhite;
+    border: solid 1px black;
+}
+
+header img {
+    max-width: 70px;
+    max-height: 40px;
+}
+
+header nav a {
+    border: solid 1px black;
+}
+
+a:link {
+    color: firebrick;
+    text-decoration: none;
+}
+
+a:visited {
+    color: steelblue;
+}
+
+a:hover {
+    color: gray;
+}
+
+/******************************
+
+Mobile
+
+******************************/
+
+@media only screen and (max-width: 600px) {
+    /* TODO: remove; this is temporary */
+    main {
+        flex-direction: column;
+        height: 100%;
+        
+        min-width: 0;
+        
+        margin-right: 0em;
+        margin-left: 0em;
+    }
+}

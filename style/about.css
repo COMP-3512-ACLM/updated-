@@ -1,0 +1,101 @@
+body {
+    background-image: url('../image/background.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+main {
+    background-color: steelblue;
+    margin-left: 20em;
+    margin-right: 20em;
+    border: dashed 5px black;
+}
+
+header {
+    background-color: ghostwhite;
+    border: solid 1px black;
+}
+
+header img {
+    max-width: 70px;
+    max-height: 40px;
+}
+
+header nav a {
+    border: solid 1px black;
+}
+
+a:link {
+    color: firebrick;
+    text-decoration: none;
+}
+
+a:visited {
+    color: steelblue;
+}
+
+a:hover {
+    color: gray;
+}
+
+
+
+#about {
+    color: white;
+    background-color: black;
+    padding:  1em;
+    border: ridge 5px powderblue;
+    margin: 10em 5em 40em 5em;
+}
+
+#about h1 {
+    padding-bottom: 0.5em;
+    font-size: 150%;
+    text-align: center;
+    text-decoration: overline underline dotted;
+    text-shadow: -1px 0 steelblue, 0 1px steelblue, 1px 0 steelblue, 0 -1px steelblue;
+}
+
+#about h2 {
+    font-size: 125%;
+    padding-bottom: 0.5em;
+    text-decoration: underline;
+    text-shadow: -1px 0 steelblue, 0 1px steelblue, 1px 0 steelblue, 0 -1px steelblue;
+}
+
+ul {
+    padding-left: 2em;
+}
+
+ul li {
+    list-style-type: circle;
+}
+
+
+/******************************
+
+Mobile
+
+******************************/
+
+@media only screen and (max-width: 600px) {
+    /* TODO: remove; this is temporary */
+    main {
+        flex-direction: column;
+        height: 100%;
+        
+        min-width: 0;
+        margin-left: 0em;
+        margin-right: 0em;
+    }
+    
+    #about {
+        color: white;
+        background-color: black;
+        padding:  1em;
+        border: ridge 5px powderblue;
+        margin: 0em 0em 0em 0em;
+    }
+}
